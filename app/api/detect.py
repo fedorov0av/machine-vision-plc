@@ -1,11 +1,10 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+
+from app.schemas.responses import CornerResponse
+
 
 router = APIRouter(prefix="/api", tags=["detect"])
 
-class CornerRequest(BaseModel):
-    method: str
-
-@router.post("/detect_corners")
-async def detect_corners(request: CornerRequest):
+@router.post("/detect_corners/", response_model=CornerResponse)
+async def detect_corners():
     pass
