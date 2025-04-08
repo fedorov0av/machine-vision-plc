@@ -5,7 +5,7 @@ import numpy as np
 class Camera:
     def __init__(
             self,
-            image_directory: str = "app/assets/images/",
+            image_directory: str = "images/",
             image_name: str = "test.png"
             ):
         self.image_directory = image_directory
