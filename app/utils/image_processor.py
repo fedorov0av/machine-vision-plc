@@ -1,4 +1,5 @@
 import cv2
+import os
 import numpy as np
 from typing import List
 
@@ -45,4 +46,7 @@ class ImageProcessor:
         return corners
 
     async def save_image(self, filename: str = "images/output/output.png"):
+        directory = os.path.dirname(filename)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
         cv2.imwrite(filename, self.image)
