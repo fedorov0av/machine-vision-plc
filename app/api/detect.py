@@ -10,11 +10,11 @@ router = APIRouter(prefix="/api", tags=["detect"])
 @router.post("/detect_corners/", response_model=CornerResponse)
 async def detect_corners():
     camera = Camera()
-    image = await camera.capture()
-    image_processor = ImageProcessor(image)
+    images = await camera.capture()
+    image_processor = ImageProcessor(images)
     await image_processor.remove_artifacts()
     await image_processor.harris_corner_detection()
-    await image_processor.save_image()
+    await image_processor.save_images()
     return CornerResponse(
         corner_1=(0, 0),
         corner_2=(0, 0),

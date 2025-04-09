@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  backend:
+    build: ./
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./images:/app/images
+    networks:
+      - docker_network
+volumes:
+  images:
+    driver: local
+networks:
+  docker_network:
+    driver: bridge
