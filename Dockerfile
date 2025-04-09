@@ -1,4 +1,4 @@
-FROM hdgigante/python-opencv:5.0.0-alpha-ubuntu
+FROM hdgigante/python-opencv:4.11.0-ubuntu
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./requirements.txt
+COPY requirements_docker.txt ./requirements.txt
 RUN pip install --no-cache-dir --upgrade -r ./requirements.txt --break-system-packages && \
     rm -rf ./requirements.txt
 
@@ -27,4 +27,4 @@ ENV TZ=Europe/Moscow
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
